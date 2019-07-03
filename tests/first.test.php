@@ -21,6 +21,12 @@ final class SumTest extends TestCase
 		$this->assertEquals(0, sum(-1, 1));
 	}
 	
+	
+	public function testNegativeOnePlusNegativeOne(): void
+	{
+		$this->assertEquals(-2, sum(-1, -1));
+	}
+	
 	public function test_WarningException_CharPlusOne(): void
 	{
 		$this->expectException(Warning::class);
