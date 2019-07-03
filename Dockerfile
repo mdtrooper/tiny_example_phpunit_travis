@@ -9,6 +9,11 @@ RUN apt update; apt install -y man
 RUN apt install -y libpq-dev
 RUN docker-php-ext-install pgsql
 
+# Install phpunit
+RUN apt install -y wget
+RUN cd /bin ; wget -O phpunit https://phar.phpunit.de/phpunit-8.phar; chmod +x phpunit
+RUN pecl install xdebug; docker-php-ext-enable xdebug
+
 # Copy from the base image of php apache
 ENTRYPOINT ["docker-php-entrypoint"]
 WORKDIR /var/www/html
