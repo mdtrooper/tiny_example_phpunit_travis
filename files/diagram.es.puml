@@ -1,0 +1,21 @@
+@startuml
+
+actor "Pepita programadora"
+
+==Chequeo de los test con Travis==
+
+"Pepita programadora" -> Github : Mandamos (git pull) \nunos \ncambios en PHP
+Github <- Travis : Cada X minutos (o por hook no se)\nchequea si hay \ncambios en el repo
+Travis -> Prueba : Lanza un docker siguiendo \nlas instrucciones\nen el fichero .travis-ci
+Prueba -> PHPUnit : En momento llama phpunit, \nlanza los distntos \nficheros tests del directorio ./test/
+PHPUnit -> Travis : Guarda el resultado \nde los test y los muestra \nen un dashboard y te da un pin gracioso \npara pegarlo en README.md.
+
+==Chequeo de los test en Local==
+"Pepita programadora" -> Git : Hacemos un commit 
+"Pepita programadora" -> Docker : Entramos en el docker con docker exec blabla
+Docker -> PHPUnit : Ejecutamos el phpunit
+PHPUnit -> Docker : Muestra por terminal los resultados \ny da ficheros de log
+
+
+
+@enduml
